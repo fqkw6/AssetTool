@@ -194,10 +194,7 @@ namespace LeyoutechEditor.Core.Packer
             classSB.AppendLine("}");
 
             string filePath = Application.dataPath + "/Scripts/Core/Loader/Config/AssetAddressKey.cs";
-            if ()
-            {
 
-            }
             File.WriteAllText(filePath, classSB.ToString());
         }
 
