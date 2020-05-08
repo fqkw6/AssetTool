@@ -88,6 +88,7 @@ namespace Leyoutech.Core.Loader
         {
             if (m_IsInit)
             {
+                Debug.LogError("sssss");
                 return m_AssetLoader.LoadOrInstanceBatchAssetAsync(new string[] { pathOrAddress }, false, priority, complete, progress, null, null, userData);
             }
             else

@@ -8,6 +8,7 @@ using UnityObject = UnityEngine.Object;
 using Leyoutech.Core.Loader;
 public class AssetTool : MonoSingleton<AssetTool>
 {
+#if UNITY_EDITOR
     private AssetLoaderState m_State;
 
     private float m_Progress = 0f;
@@ -42,4 +43,5 @@ public class AssetTool : MonoSingleton<AssetTool>
 
         }
     }
+#endif
 }

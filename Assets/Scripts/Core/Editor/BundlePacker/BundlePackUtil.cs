@@ -150,14 +150,17 @@ namespace LeyoutechEditor.Core.Packer
             AssetBundleTagConfig tagConfig = Util.FileUtil.ReadFromBinary<AssetBundleTagConfig>(BundlePackUtil.GetTagConfigPath());
 
             List<string> fieldNameAndValues = new List<string>();
+            Debug.LogError("jinlai " + tagConfig.GroupDatas.Count);
+
             foreach (var group in tagConfig.GroupDatas)
             {
-                if (!group.IsMain || !group.IsGenAddress)
+                Debug.LogError(!group.IsMain + "jinlai " + !group.IsGenAddress);
+                if (!group.IsMain)//|| !group.IsGenAddress)
                 {
                     continue;
                 }
                 string prefix = group.GroupName.Replace(" ", "");
-
+                Debug.LogError("jinlai " + group.AssetDatas.Count);
                 foreach (var data in group.AssetDatas)
                 {
                     string address = data.AssetAddress;
@@ -171,14 +174,13 @@ namespace LeyoutechEditor.Core.Packer
 
                     string fieldName = (prefix + "_" + tempName).ToUpper();
                     string content = $"{fieldName} = @\"{address}\";";
-
+                    Debug.LogError(content);
                     if (fieldNameAndValues.IndexOf(content) < 0)
                     {
                         fieldNameAndValues.Add(content);
                     }
                 }
             }
-
             StringBuilder classSB = new StringBuilder();
             classSB.AppendLine("namespace Leyoutech.Core.Loader.Config");
             classSB.AppendLine("{");

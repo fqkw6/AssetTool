@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1218602870
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ccd14292458cdae0c876782a367b2df6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6594a5964d51f0722952941543cee5ff
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 1a1120ebafbc81c47a1a6851a02efafa, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Tools/AssetAddress/asset_address_config.asset
+Dependencies: []

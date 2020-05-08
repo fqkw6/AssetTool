@@ -16,18 +16,18 @@ namespace Leyoutech.Core.Loader
         /// </summary>
         public static readonly string ASSETBUNDLE_MAINFEST_NAME = "assetbundles";
     }
-    
+
     public class AssetBundleLoader : AAssetLoader
     {
         /// <summary>
         /// AssetNode 对象池
         /// </summary>
-        private  ObjectPool<AssetNode> m_AssetNodePool = new ObjectPool<AssetNode>(50);
+        private ObjectPool<AssetNode> m_AssetNodePool = new ObjectPool<AssetNode>(50);
 
         /// <summary>
         /// bundlNode 对象池
         /// </summary>
-        private  ObjectPool<BundleNode> m_BundleNodePool = new ObjectPool<BundleNode>(50);
+        private ObjectPool<BundleNode> m_BundleNodePool = new ObjectPool<BundleNode>(50);
 
         /// <summary>
         /// AssetNode 容器，《主资源路径，AssetNode》
@@ -54,7 +54,7 @@ namespace Leyoutech.Core.Loader
         /// 定时器
         /// </summary>
         private TimerTaskInfo m_AssetCleanTimer = null;
-        
+
         /// <summary>
         /// AB 根路径
         /// </summary>
@@ -73,13 +73,13 @@ namespace Leyoutech.Core.Loader
         protected override void InnerInitialize(string rootDir)
         {
             m_AssetRootDir = rootDir;
-            if(!string.IsNullOrEmpty(m_AssetRootDir) && !m_AssetRootDir.EndsWith("/"))
+            if (!string.IsNullOrEmpty(m_AssetRootDir) && !m_AssetRootDir.EndsWith("/"))
             {
                 m_AssetRootDir += "/";
             }
 
             //开辟清除无效资源定时器
-           m_AssetCleanTimer = TimerManager.GetInstance().AddIntervalTimer(m_AssetCleanInterval, this.OnCleanAssetInterval);
+            m_AssetCleanTimer = TimerManager.GetInstance().AddIntervalTimer(m_AssetCleanInterval, this.OnCleanAssetInterval);
 
             //加载全局manifest
             string manifestPath = $"{this.m_AssetRootDir}/{AssetBundleConst.ASSETBUNDLE_MAINFEST_NAME}";
@@ -104,11 +104,11 @@ namespace Leyoutech.Core.Loader
         protected override bool UpdateInitialize(out bool isSuccess)
         {
             isSuccess = true;
-            if(m_AssetBundleManifest == null)
+            if (m_AssetBundleManifest == null)
             {
                 isSuccess = false;
             }
-            if(isSuccess && m_PathMode == AssetPathMode.Address && m_AssetAddressConfig == null)
+            if (isSuccess && m_PathMode == AssetPathMode.Address && m_AssetAddressConfig == null)
             {
                 isSuccess = false;
             }
@@ -128,7 +128,7 @@ namespace Leyoutech.Core.Loader
             {
                 string assetPath = loaderData.m_AssetPaths[i];
 
-                if(m_AssetNodeDic.TryGetValue(assetPath,out AssetNode assetNode))
+                if (m_AssetNodeDic.TryGetValue(assetPath, out AssetNode assetNode))
                 {
                     //已经有过了，计数+1
                     assetNode.RetainLoadCount();
@@ -136,7 +136,7 @@ namespace Leyoutech.Core.Loader
                 }
 
                 string mainBundlePath = m_AssetAddressConfig.GetBundlePathByPath(assetPath);
-                if(!m_BundleNodeDic.TryGetValue(mainBundlePath,out BundleNode bundleNode))
+                if (!m_BundleNodeDic.TryGetValue(mainBundlePath, out BundleNode bundleNode))
                 {
                     bundleNode = CreateBundleNode(mainBundlePath);
                 }
@@ -156,7 +156,7 @@ namespace Leyoutech.Core.Loader
         /// <returns></returns>
         private BundleNode CreateBundleNode(string mainBundlePath)
         {
-            if(!m_BundleNodeDic.TryGetValue(mainBundlePath,out BundleNode mainBundleNode))
+            if (!m_BundleNodeDic.TryGetValue(mainBundlePath, out BundleNode mainBundleNode))
             {
                 // 创建异步操作
                 CreateAsyncOperaton(mainBundlePath);
@@ -177,7 +177,7 @@ namespace Leyoutech.Core.Loader
                     {
                         dependBundleNode = CreateBundleNode(path);                                                                      //递归
                     }
-                    mainBundleNode.AddDependNode(dependBundleNode);                   
+                    mainBundleNode.AddDependNode(dependBundleNode);
                 }
             }
 
@@ -193,7 +193,7 @@ namespace Leyoutech.Core.Loader
             AssetBundleAsyncOperation operation = new AssetBundleAsyncOperation(bundlePath, m_AssetRootDir);
 
             m_LoadingAsyncOperationList.Add(operation);
-            m_LoadingAsyncOperationDic.Add(bundlePath,operation);
+            m_LoadingAsyncOperationDic.Add(bundlePath, operation);
         }
 
 
@@ -223,7 +223,7 @@ namespace Leyoutech.Core.Loader
             int totalCount = 0;          //总数量
             string mainBundlePath = m_AssetAddressConfig.GetBundlePathByPath(assetPath);
 
-            if (m_LoadingAsyncOperationDic.TryGetValue(mainBundlePath,out AssetBundleAsyncOperation mainOperation))
+            if (m_LoadingAsyncOperationDic.TryGetValue(mainBundlePath, out AssetBundleAsyncOperation mainOperation))
             {
                 progress += mainOperation.Progress();
             }
@@ -236,9 +236,9 @@ namespace Leyoutech.Core.Loader
 
             //处理关联资源的进度
             string[] dependBundlePaths = m_AssetBundleManifest.GetAllDependencies(mainBundlePath);
-            if(dependBundlePaths!=null && dependBundlePaths.Length>0)
+            if (dependBundlePaths != null && dependBundlePaths.Length > 0)
             {
-                foreach(var path in dependBundlePaths)
+                foreach (var path in dependBundlePaths)
                 {
                     if (m_LoadingAsyncOperationDic.TryGetValue(path, out AssetBundleAsyncOperation operation))
                     {
@@ -256,7 +256,7 @@ namespace Leyoutech.Core.Loader
 
 
         /// <summary>
-	/// 对于正在加载的请求，根据加载的情况更新其进度或者完成资源的加载
+        /// 对于正在加载的请求，根据加载的情况更新其进度或者完成资源的加载
         /// 更新加载状态，进度等，并反馈此次加载任务的完成结果
         /// </summary>
         /// <param name="loaderData">加载任务数据</param>
@@ -272,27 +272,27 @@ namespace Leyoutech.Core.Loader
             bool isComplete = true;   //加载是否完成
             for (int i = 0; i < loaderData.m_AssetPaths.Length; ++i)
             {
-                if(loaderData.GetLoadState(i))//加载完成了跳过
+                if (loaderData.GetLoadState(i))//加载完成了跳过
                 {
                     continue;
                 }
                 string assetPath = loaderData.m_AssetPaths[i];
                 AssetNode assetNode = m_AssetNodeDic[assetPath];
-                if(assetNode == null)
+                if (assetNode == null)
                 {
                     //assetNode 存储值为空，直接此assetNode当做完成,为上面GetLoadState 跳过过滤
-                    loaderData.SetLoadState(i); 
+                    loaderData.SetLoadState(i);
                     loaderData.InvokeComplete(i, null);
                     continue;
                 }
 
-                if(loaderHandle == null)
+                if (loaderHandle == null)
                 {
                     //loaderHandle 值为空，assetNode完成,为上面GetLoadState 跳过过滤
                     if (assetNode.IsDone)
                     {
                         assetNode.ReleaseLoadCount();
-                        loaderData.SetLoadState(i);  
+                        loaderData.SetLoadState(i);
                     }
                     else
                     {
@@ -302,11 +302,11 @@ namespace Leyoutech.Core.Loader
                 }
 
 
-                if(assetNode.IsDone)//判断是否完成，如果完成了加载则进行相关的回调
+                if (assetNode.IsDone)//判断是否完成，如果完成了加载则进行相关的回调
                 {
                     assetNode.ReleaseLoadCount();//计数-1
                     UnityObject uObj = null;
-                    if(loaderData.m_IsInstance)
+                    if (loaderData.m_IsInstance)
                     {
                         uObj = assetNode.GetInstance();
                     }
@@ -340,7 +340,7 @@ namespace Leyoutech.Core.Loader
                     isComplete = false;
                 }
             }
-            if(loaderHandle!=null)
+            if (loaderHandle != null)
             {
                 //更新全部进度
                 loaderData.InvokeBatchProgress(loaderHandle.AssetProgresses);
@@ -352,10 +352,10 @@ namespace Leyoutech.Core.Loader
                     loaderData.InvokeBatchComplete(loaderHandle.AssetObjects);
                 }
             }
-            
+
             return isComplete;
         }
-        
+
 
         /// <summary>
         /// 设置定时器，定时检查资源并清理。由于Unity对资源的使用的方式问题，并不一定会清理掉资源。
@@ -375,9 +375,9 @@ namespace Leyoutech.Core.Loader
         public override void UnloadAsset(string pathOrAddress)
         {
             string assetPath = GetAssetPath(pathOrAddress);
-            if(m_AssetNodeDic.TryGetValue(assetPath,out AssetNode assetNode))
+            if (m_AssetNodeDic.TryGetValue(assetPath, out AssetNode assetNode))
             {
-                if(assetNode.IsDone)
+                if (assetNode.IsDone)
                 {
                     m_AssetNodeDic.Remove(assetPath);
                     m_AssetNodePool.Release(assetNode);
@@ -397,7 +397,7 @@ namespace Leyoutech.Core.Loader
 
         /// <summary>
         /// 内部卸载无用资源函数
-	/// 根据资源的记数查找可以释放的资源
+        /// 根据资源的记数查找可以释放的资源
         /// </summary>
         protected override void InnerUnloadUnusedAssets()
         {
@@ -420,20 +420,20 @@ namespace Leyoutech.Core.Loader
 
         /// <summary>
         /// 实例化一个资源
-	///对于使用Loader加载的资源需要通过此函数Instance对象，否则会造成资源无法回收
+        ///对于使用Loader加载的资源需要通过此函数Instance对象，否则会造成资源无法回收
         /// </summary>
         /// <param name="assetPath"></param>
         /// <param name="asset"></param>
         /// <returns></returns>
         public override UnityObject InstantiateAsset(string assetPath, UnityObject asset)
         {
-            if(m_PathMode == AssetPathMode.Address)
+            if (m_PathMode == AssetPathMode.Address)
             {
                 assetPath = m_AssetAddressConfig.GetAssetPathByAddress(assetPath);
             }
-            if(m_AssetNodeDic.TryGetValue(assetPath,out AssetNode assetNode))
+            if (m_AssetNodeDic.TryGetValue(assetPath, out AssetNode assetNode))
             {
-                if(assetNode.IsDone)
+                if (assetNode.IsDone)
                 {
                     UnityObject instance = base.InstantiateAsset(assetPath, asset);
                     assetNode.AddInstance(instance);

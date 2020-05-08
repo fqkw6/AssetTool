@@ -9,17 +9,17 @@ namespace LeyoutechEditor.Core.AssetRuler.AssetAddress
 {
     [CreateAssetMenu(fileName = "assetaddress_assembly", menuName = "Asset Ruler/Asset Address/Assembly 资源集合 ", order = 1)]
     public class AssetAddressAssembly : AssetAssembly
-	{
-		/// <summary>
-		/// 用于标识测试group名的前缀字符串
-		/// </summary>
-		private static string DEFAULT_TEST_GROUP_PREFIX = "_test";
-		public string TestGroupPrefix = DEFAULT_TEST_GROUP_PREFIX;
+    {
+        /// <summary>
+        /// 用于标识测试group名的前缀字符串
+        /// </summary>
+        private static string DEFAULT_TEST_GROUP_PREFIX = "_test";
+        public string TestGroupPrefix = DEFAULT_TEST_GROUP_PREFIX;
 
-		/// <summary>
-		/// 自动查找 Goup 配置
-		/// </summary>
-		public void AutoFind()
+        /// <summary>
+        /// 自动查找 Goup 配置
+        /// </summary>
+        public void AutoFind()
         {
             (Editor.CreateEditor(this) as AssetAddressAssemblyEditor).AutoFindGroup();
         }
@@ -31,14 +31,14 @@ namespace LeyoutechEditor.Core.AssetRuler.AssetAddress
         public override AssetAssemblyResult Execute()
         {
             AssetAddressAssemblyResult result = new AssetAddressAssemblyResult();
-            foreach(var group in m_AssetGroups)
+            foreach (var group in m_AssetGroups)
             {
                 group.Execute(result);
             }
 
             //读取配置
             AssetBundleTagConfig tagConfig = Util.FileUtil.ReadFromBinary<AssetBundleTagConfig>(BundlePackUtil.GetTagConfigPath());
-            if(tagConfig.GroupDatas == null)
+            if (tagConfig.GroupDatas == null)
             {
                 tagConfig.GroupDatas = new List<AssetBundleGroupData>();
             }
@@ -54,6 +54,7 @@ namespace LeyoutechEditor.Core.AssetRuler.AssetAddress
                 AssetBundleGroupData groupData = new AssetBundleGroupData();
                 groupData.GroupName = gResult.m_GroupName;
                 groupData.IsGenAddress = gResult.m_IsGenAddress;
+                Debug.LogError(groupData.IsGenAddress);
                 groupData.IsMain = gResult.m_IsMain;
                 groupData.IsPreload = gResult.m_IsPreload;
 

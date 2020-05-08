@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d13a840956d98af4ab21ed7656e57a05, type: 3}
-  m_Name: assetaddress_assembly
+  m_Script: {fileID: 11500000, guid: d8d5353d68d1f8647bbda9ff287675bb, type: 3}
+  m_Name: asset_inanydir_filter
   m_EditorClassIdentifier: 
-  m_AssetAssemblyType: 0
-  m_AssetGroups:
-  - {fileID: 11400000, guid: 418ef72ca1f859b4f90b6231628ef363, type: 2}
-  TestGroupPrefix: _test
+  m_IgnoreCase: 1
+  M_DirNameRegex: 

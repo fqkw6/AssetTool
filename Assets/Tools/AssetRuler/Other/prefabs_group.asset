@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa26d683f72b4e4aa166b99107b522e, type: 3}
+  m_Name: prefabs_group
+  m_EditorClassIdentifier: 
+  m_IsEnable: 1
+  m_GroupName: Prefabs
+  m_AssetAssemblyType: 0
+  m_AssetSearchers:
+  - m_Folder: Assets/AssetPackage/Prefabs
+    m_IncludeSubfolder: 1
+    m_FileNameFilterRegex: ^\w*.prefab
+  m_FilterOperations:
+  - {fileID: 11400000, guid: 422fefedea3608a48993e2a487f0fae7, type: 2}
+  m_IsGenAddress: 0
+  m_IsMain: 1
+  m_IsPreload: 0

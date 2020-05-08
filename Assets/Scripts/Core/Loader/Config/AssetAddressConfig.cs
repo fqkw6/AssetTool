@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 namespace Leyoutech.Core.Loader.Config
 {
+    [CreateAssetMenu(fileName = "asset_address_config", menuName = "Asset Ruler/Asset Address/Asset_address_config ", order = 4)]
     public class AssetAddressConfig : ScriptableObject, ISerializationCallbackReceiver
     {
         /// <summary>
@@ -52,19 +53,20 @@ namespace Leyoutech.Core.Loader.Config
         public string[] GetAssetPathByAddress(string[] addresses)
         {
             List<string> paths = new List<string>();
-            for(int i =0;i<addresses.Length;++i)
+            for (int i = 0; i < addresses.Length; ++i)
             {
                 string assetPath = GetAssetPathByAddress(addresses[i]);
-                if(assetPath == null)
+                if (assetPath == null)
                 {
                     Debug.LogError($"AssetAddressConfig::GetAssetPathByAddress->Not found Asset by Address.address = {addresses[i]}");
                     return null;
-                }else
+                }
+                else
                 {
                     paths.Add(assetPath);
                 }
             }
-            return paths.ToArray() ;
+            return paths.ToArray();
         }
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Leyoutech.Core.Loader.Config
         /// <returns></returns>
         public string GetAssetPathByAddress(string address)
         {
-            if(m_AddressToPathDic.TryGetValue(address,out string path))
+            if (m_AddressToPathDic.TryGetValue(address, out string path))
             {
                 return path;
             }
@@ -88,7 +90,7 @@ namespace Leyoutech.Core.Loader.Config
         /// <returns></returns>
         public string[] GetAssetPathByLabel(string label)
         {
-            if(m_LabelToPathDic.TryGetValue(label,out List<string> paths))
+            if (m_LabelToPathDic.TryGetValue(label, out List<string> paths))
             {
                 return paths.ToArray();
             }
@@ -118,7 +120,7 @@ namespace Leyoutech.Core.Loader.Config
         /// <returns></returns>
         public string GetBundlePathByPath(string path)
         {
-            if(m_PathToAssetDic.TryGetValue(path,out AssetAddressData data))
+            if (m_PathToAssetDic.TryGetValue(path, out AssetAddressData data))
             {
                 return data.BundlePath;
             }
@@ -134,7 +136,7 @@ namespace Leyoutech.Core.Loader.Config
         public string[] GetBundlePathByPath(string[] paths)
         {
             string[] bundlePaths = new string[paths.Length];
-            for(int i =0;i<paths.Length;++i)
+            for (int i = 0; i < paths.Length; ++i)
             {
                 bundlePaths[i] = GetBundlePathByPath(paths[i]);
             }
@@ -146,27 +148,27 @@ namespace Leyoutech.Core.Loader.Config
         /// </summary>
         public void OnAfterDeserialize()
         {
-            foreach(var data in AddressDatas)
+            foreach (var data in AddressDatas)
             {
-                if(m_AddressToPathDic.ContainsKey(data.AssetAddress))
+                if (m_AddressToPathDic.ContainsKey(data.AssetAddress))
                 {
-                    Debug.LogError("AssetAddressConfig::OnAfterDeserialize->address repeat.address = "+data.AssetAddress);
+                    Debug.LogError("AssetAddressConfig::OnAfterDeserialize->address repeat.address = " + data.AssetAddress);
                     continue;
                 }
                 m_AddressToPathDic.Add(data.AssetAddress, data.AssetPath);
                 m_PathToAssetDic.Add(data.AssetPath, data);
 
-                if(data.Labels!=null && data.Labels.Length>0)
+                if (data.Labels != null && data.Labels.Length > 0)
                 {
-                    foreach(var label in data.Labels)
+                    foreach (var label in data.Labels)
                     {
-                        if(!m_LabelToPathDic.TryGetValue(label,out List<string> paths))
+                        if (!m_LabelToPathDic.TryGetValue(label, out List<string> paths))
                         {
                             paths = new List<string>();
                             m_LabelToPathDic.Add(label, paths);
                         }
 
-                        if(!m_LabelToAddressDic.TryGetValue(label,out List<string> addresses))
+                        if (!m_LabelToAddressDic.TryGetValue(label, out List<string> addresses))
                         {
                             addresses = new List<string>();
                             m_LabelToAddressDic.Add(label, addresses);
@@ -183,7 +185,7 @@ namespace Leyoutech.Core.Loader.Config
         /// </summary>
         public void OnBeforeSerialize()
         {
-            
+
         }
     }
 }

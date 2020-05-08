@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1120ebafbc81c47a1a6851a02efafa, type: 3}
   m_Name: asset_address_config
   m_EditorClassIdentifier: 
-  AddressDatas: []
+  AddressDatas:
+  - AssetAddress: Cube
+    AssetPath: Assets/AssetPackage/Prefabs/Cube.prefab
+    BundlePath: 20c8035e1f9cec47abfe6e68fc7a32be
+    Labels: []
