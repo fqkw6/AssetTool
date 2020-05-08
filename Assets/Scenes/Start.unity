@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1124348912}
   - component: {fileID: 1124348911}
-  - component: {fileID: 1124348913}
   m_Layer: 0
   m_Name: Lanch
   m_TagString: Untagged
@@ -164,30 +163,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1124348913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124348910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5317ee8f5ddcd0944836744a2aa79823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraSize02:
-    BackgroundColor: {r: 1, g: 0, b: 0, a: 1}
-    ViewPortRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    ViewPortOffset:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    CanvasMargin: {x: 22, y: 22}
-    MaxSpeed: 11112
