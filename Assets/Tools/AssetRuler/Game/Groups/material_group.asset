@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa26d683f72b4e4aa166b99107b522e, type: 3}
+  m_Name: material_group
+  m_EditorClassIdentifier: 
+  m_IsEnable: 1
+  m_GroupName: Material
+  m_AssetAssemblyType: 0
+  m_AssetSearchers:
+  - m_Folder: Assets/Artwork/UI/Models/IndependentMaterial
+    m_IncludeSubfolder: 1
+    m_FileNameFilterRegex: ^\w*.mat$
+  m_FilterOperations:
+  - {fileID: 11400000, guid: 7657e90d4f5fbde48a7c51d496c13019, type: 2}
+  m_IsGenAddress: 1
+  m_IsMain: 1
+  m_IsPreload: 0

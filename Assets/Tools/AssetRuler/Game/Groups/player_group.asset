@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa26d683f72b4e4aa166b99107b522e, type: 3}
+  m_Name: player_group
+  m_EditorClassIdentifier: 
+  isEnable: 1
+  groupName: Player
+  assetAssemblyType: 0
+  assetSearchers:
+  - folder: Assets/Artwork/Character/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Unit
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Npc_Alien/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Npc_Other/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Human_Head/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Npc/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Human/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Human_Body/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  - folder: Assets/Artwork/Character/Character_Timeline/Timeline_Scene1004/Prefabs
+    includeSubfolder: 0
+    fileNameFilterRegex: ^\w*.prefab
+  filterOperations:
+  - {fileID: 11400000, guid: 422fefedea3608a48993e2a487f0fae7, type: 2}
+  isGenAddress: 0
+  isMain: 1
+  isPreload: 0
