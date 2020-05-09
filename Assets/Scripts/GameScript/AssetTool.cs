@@ -28,7 +28,7 @@ public class AssetTool : MonoSingleton<AssetTool>
     public void LoadAsset(string path, Action<UnityObject> callback)
     {
         m_State = AssetLoaderState.Loading;
-        if (GameConst.m_AssetLoaderMode == AssetLoaderMode.AssetDatabase)
+        if (GameConst.GetInstance().m_AssetLoaderMode == AssetLoaderMode.AssetDatabase)
         {
             UnityObject obj = LoadAssetFromLocal(path, callback);
             m_State = AssetLoaderState.Complete;

@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: asset_address_config
   m_EditorClassIdentifier: 
   AddressDatas:
+  - AssetAddress: Lanch
+    AssetPath: Assets/AssetPackage/Prefabs/Lanch.prefab
+    BundlePath: 737c6f5b6626603463f5514f980cf419
+    Labels: []
   - AssetAddress: Cube
     AssetPath: Assets/AssetPackage/Prefabs/Cube.prefab
     BundlePath: 20c8035e1f9cec47abfe6e68fc7a32be
+    Labels: []
+  - AssetAddress: Assets/Scenes/Start.unity
+    AssetPath: Assets/Scenes/Start.unity
+    BundlePath: 1c08188c84f13f023972d6ab4403a78e
+    Labels: []
+  - AssetAddress: Assets/Scenes/GameMain.unity
+    AssetPath: Assets/Scenes/GameMain.unity
+    BundlePath: c1463d80d1c316d65a29cdb5e9ef9703
     Labels: []

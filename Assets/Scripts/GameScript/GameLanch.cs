@@ -9,32 +9,36 @@ public class GameLanch : MonoBehaviour
     void Start()
     {
         GameUpdate.Instance.Init();
+
         //AssetTool.Instance.Init();
         AssetBundle.UnloadAllAssetBundles(true);
-
+        Debug.Log(GameConst.GetInstance().m_AssetLoaderMode);
         AssetManager.GetInstance().InitLoader(
-            GameConst.m_AssetLoaderMode,
+            GameConst.GetInstance().m_AssetLoaderMode,
             AssetPathMode.Address,
             GameConst.m_MaxLoadCount,
-            GameConst.m_AssetBundlePath,
+            GameConst.GetInstance().m_AssetBundlePath,
             (isSuccess) =>
             {
                 if (isSuccess)
                 {
-                    Debug.LogError("重启");
-                    Debug.LogError("sssdsdsd");
-                    Leyoutech.Core.Loader.AssetManager.GetInstance().LoadAssetAsync(AssetAddressKey.PREFABS_CUBE, (address, uObj, userData) =>
-                                {
-                                    GameObject go = uObj as GameObject;
-                                    Debug.LogError(go);
-                                });
+                    GameLoader.Instance.Init();
+                    Debug.Log("重启AssetManager");
+                    AssetManager.GetInstance().LoadSceneAsync("Assets/Scenes/GameMain.unity", (address, scene, userData) =>
+                         {
+                             Debug.Log("加载游戏");
+                             AssetManager.GetInstance().LoadAssetAsync(AssetAddressKey.PREFABS_CUBE,
+                              (address1, uobj, userData1) =>
+                              {
+                                  GameObject go = uobj as GameObject;
+                                  Debug.Log("chenggong" + go);
+                                  GameObject.Instantiate(go);
+                              });
+                         }, null);
                 }
             });
 
     }
 
-    void Update()
-    {
 
-    }
 }

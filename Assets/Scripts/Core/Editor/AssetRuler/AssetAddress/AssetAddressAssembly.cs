@@ -54,7 +54,6 @@ namespace LeyoutechEditor.Core.AssetRuler.AssetAddress
                 AssetBundleGroupData groupData = new AssetBundleGroupData();
                 groupData.GroupName = gResult.m_GroupName;
                 groupData.IsGenAddress = gResult.m_IsGenAddress;
-                Debug.LogError(groupData.IsGenAddress);
                 groupData.IsMain = gResult.m_IsMain;
                 groupData.IsPreload = gResult.m_IsPreload;
 

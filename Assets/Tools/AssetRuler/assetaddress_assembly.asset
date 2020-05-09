@@ -15,4 +15,5 @@ MonoBehaviour:
   m_AssetAssemblyType: 0
   m_AssetGroups:
   - {fileID: 11400000, guid: 418ef72ca1f859b4f90b6231628ef363, type: 2}
+  - {fileID: 11400000, guid: b0a16ff096c0c444cb81632d9ca13c62, type: 2}
   TestGroupPrefix: _test
