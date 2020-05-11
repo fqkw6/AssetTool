@@ -375,10 +375,10 @@ public class Util
                 int i = Application.dataPath.LastIndexOf('/');
                 return Application.dataPath.Substring(0, i + 1) + game + "/";
             }
-            if (Application.platform == RuntimePlatform.WindowsEditor)
-            {
-                return Application.streamingAssetsPath;
-            }
+            // if (Application.platform == RuntimePlatform.WindowsEditor)
+            // {
+            //     return Application.streamingAssetsPath;
+            // }
             return "c:/" + game + "/";
         }
     }

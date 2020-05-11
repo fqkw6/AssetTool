@@ -10,22 +10,23 @@ public class GameConst : Singleton<GameConst>
     public string assetBundlePath; //地址
     public static int m_MaxLoadCount = 30; //同时加载数
     const string kEditorMode = "AssetBuild/BuildMode/Editor";
-    private string tPlatformName = "Android";
+    private string tPlatformName = "Android";//平台名字
 
-    public bool DebugMode;
+    public bool DebugMode;//是否调试
     public string AppName = "AssetTool";
+    public bool IsUpdate;//是否更新
     public string WebUrl
     {
         get
         {
-            return "https://abserver.oss-cn-beijing.aliyuncs.com/AssetBuild/";
+            return "https://abserver.oss-cn-beijing.aliyuncs.com/AssetBuild/";//外网地址
         }
     }
     public string m_AssetBundlePath
     {
         get
         {
-            assetBundlePath = Application.streamingAssetsPath + "/" + tPlatformName + "/assetbundles"; //地址
+            assetBundlePath = Application.streamingAssetsPath + "/" + tPlatformName + "/assetbundles"; //加载build地址
             return assetBundlePath;
         }
     }
