@@ -26,7 +26,11 @@ public class GameConst : Singleton<GameConst>
     {
         get
         {
+#if UNITY_EDITOR
             assetBundlePath = Application.streamingAssetsPath + "/" + tPlatformName + "/assetbundles"; //加载build地址
+#elif UNITY_ANDROID//UNITY_IOS。 UNITY_ANDROID
+assetBundlePath = Application.dataPath+"!assets" + "/" + tPlatformName + "/assetbundles"; //加载build地址
+#endif
             return assetBundlePath;
         }
     }
@@ -38,6 +42,8 @@ public class GameConst : Singleton<GameConst>
 #if UNITY_EDITOR
             if (!UnityEditor.EditorPrefs.HasKey(kEditorMode)) { UnityEditor.EditorPrefs.SetString(kEditorMode, "true"); }
             assetLoaderMode = UnityEditor.EditorPrefs.GetString(kEditorMode) == "false" ? AssetLoaderMode.AssetBundle : AssetLoaderMode.AssetDatabase;
+#elif UNITY_ANDROID
+ assetLoaderMode =AssetLoaderMode.AssetBundle;
 #endif
             return assetLoaderMode;
         }

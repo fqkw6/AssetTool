@@ -74,7 +74,9 @@ namespace Leyoutech.Core.Loader
         /// </summary>
         protected override void CreateAsyncOperation()
         {
-            m_asyncOperation = AssetBundle.LoadFromFileAsync(AssetRootPath+AssetPath);
+            Debug.LogError(AssetRootPath + AssetPath);
+            m_asyncOperation = AssetBundle.LoadFromFileAsync(AssetRootPath + AssetPath);
+            Debug.LogError(m_asyncOperation.assetBundle);
         }
     }
 }

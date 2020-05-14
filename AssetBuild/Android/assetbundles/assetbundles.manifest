@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 2166382507
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: assetaddressconfig
+      Dependencies: {}
+    Info_1:
+      Name: 737c6f5b6626603463f5514f980cf419
+      Dependencies: {}
+    Info_2:
+      Name: 20c8035e1f9cec47abfe6e68fc7a32be
+      Dependencies: {}
+    Info_3:
+      Name: 1c08188c84f13f023972d6ab4403a78e
+      Dependencies:
+        Dependency_0: 737c6f5b6626603463f5514f980cf419
+    Info_4:
+      Name: c1463d80d1c316d65a29cdb5e9ef9703
+      Dependencies: {}

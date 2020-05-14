@@ -73,23 +73,26 @@ namespace Leyoutech.Core.Loader
         protected override void InnerInitialize(string rootDir)
         {
             m_AssetRootDir = rootDir;
-            if (!string.IsNullOrEmpty(m_AssetRootDir) && !m_AssetRootDir.EndsWith("/"))
-            {
-                m_AssetRootDir += "/";
-            }
-
+            // if (!string.IsNullOrEmpty(m_AssetRootDir) && !m_AssetRootDir.EndsWith("/"))
+            // {
+            //     m_AssetRootDir += "/";
+            // }
+            m_AssetRootDir += "/";
             //开辟清除无效资源定时器
             m_AssetCleanTimer = TimerManager.GetInstance().AddIntervalTimer(m_AssetCleanInterval, this.OnCleanAssetInterval);
 
             //加载全局manifest
-            string manifestPath = $"{this.m_AssetRootDir}/{AssetBundleConst.ASSETBUNDLE_MAINFEST_NAME}";
+            // string manifestPath = $"{this.m_AssetRootDir}/{AssetBundleConst.ASSETBUNDLE_MAINFEST_NAME}";
+            string manifestPath = this.m_AssetRootDir + AssetBundleConst.ASSETBUNDLE_MAINFEST_NAME;
+            Debug.LogError(manifestPath);
             AssetBundle manifestAB = AssetBundle.LoadFromFile(manifestPath);
+            Debug.LogError(manifestAB);
             m_AssetBundleManifest = manifestAB.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
             // AB释放掉
             manifestAB.Unload(false);
 
             //加载资源打包配置数据
-            string assetAddressConfigPath = $"{this.m_AssetRootDir}/{AssetAddressConfig.CONFIG_ASSET_BUNDLE_NAME}";
+            string assetAddressConfigPath = this.m_AssetRootDir + AssetAddressConfig.CONFIG_ASSET_BUNDLE_NAME;
             AssetBundle assteAddressConfigAB = AssetBundle.LoadFromFile(assetAddressConfigPath);
             m_AssetAddressConfig = assteAddressConfigAB.LoadAsset<AssetAddressConfig>(AssetAddressConfig.CONFIG_PATH);
             assteAddressConfigAB.Unload(false);

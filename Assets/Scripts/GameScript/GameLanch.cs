@@ -24,17 +24,17 @@ public class GameLanch : MonoBehaviour
                 {
                     GameLoader.Instance.Init();
                     Debug.Log("重启AssetManager");
-                    // AssetManager.GetInstance().LoadSceneAsync("Assets/Scenes/GameMain.unity", (address, scene, userData) =>
-                    //      {
-                    //          Debug.Log("加载游戏");
-                    //          AssetManager.GetInstance().LoadAssetAsync(AssetAddressKey.PREFABS_CUBE,
-                    //           (address1, uobj, userData1) =>
-                    //           {
-                    //               GameObject go = uobj as GameObject;
-                    //               Debug.Log("chenggong" + go);
-                    //               GameObject.Instantiate(go);
-                    //           });
-                    //      }, null);
+                    AssetManager.GetInstance().LoadSceneAsync("Assets/Scenes/GameMain.unity", (address, scene, userData) =>
+                         {
+                             Debug.Log("加载游戏");
+                             AssetManager.GetInstance().LoadAssetAsync(AssetAddressKey.PREFABS_CUBE,
+                              (address1, uobj, userData1) =>
+                              {
+                                  GameObject go = uobj as GameObject;
+                                  Debug.Log("chenggong" + go);
+                                  GameObject.Instantiate(go);
+                              });
+                         }, null);
                 }
             });
 

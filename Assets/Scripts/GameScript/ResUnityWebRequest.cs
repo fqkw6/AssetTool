@@ -11,6 +11,11 @@ public class ResUnityWebRequest
     private string savePath = "";//如"E://"
     private string downloadFileName = "";
     private bool write;
+    public byte[] bytes => webRequest.downloadHandler.data;
+
+    public string text => webRequest.downloadHandler.text;
+
+    public string error => string.IsNullOrEmpty(webRequest.error) ? null : webRequest.error;
     public void Create(string url, string path)
     {
         downloadUrl = url;//"https://abserver.oss-cn-beijing.aliyuncs.com/test10.apk"; ;//下载链接
@@ -47,6 +52,8 @@ public class ResUnityWebRequest
 
         }
     }
+
+
     /// <summary>
     /// 根据URL下载文件
     /// </summary>

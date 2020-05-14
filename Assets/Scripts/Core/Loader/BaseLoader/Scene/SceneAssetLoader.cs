@@ -72,7 +72,7 @@ namespace Leyoutech.Core.Loader
             loaderData.LoadMode = loadMode;
             loaderData.ActivateOnLoad = activateOnLoad;
             loaderData.UserData = userData;
-            
+
             SceneLoaderHandle handle = new SceneLoaderHandle();
             handle.PathOrAddress = pathOrAddress;
             handle.AssetPath = assetPath;
@@ -126,10 +126,12 @@ namespace Leyoutech.Core.Loader
                 {
                     m_LoadingSceneDatas.RemoveAt(0);
                     SceneLoadComplete(loadData);
-                } else if (!loadData.IsLoading())
+                }
+                else if (!loadData.IsLoading())
                 {
                     SceneLoadStart(loadData);
-                } else
+                }
+                else
                 {
                     SceneLoadProgress(loadData);
                 }
@@ -142,10 +144,12 @@ namespace Leyoutech.Core.Loader
                 {
                     m_UnloadingSceneDatas.RemoveAt(0);
                     SceneUnloadComplete(unloadData);
-                } else if (unloadData.IsUnloading())
+                }
+                else if (unloadData.IsUnloading())
                 {
                     unloadData.ProgressCallback?.Invoke(unloadData.PathOrAddress, unloadData.Progress(), unloadData.UserData);
-                } else
+                }
+                else
                 {
                     SceneUnloadStart(unloadData);
                 }
@@ -236,9 +240,9 @@ namespace Leyoutech.Core.Loader
         private void SceneUnloadComplete(SceneUnloadData unloadData)
         {
             SceneLoaderHandle loaderHandle = null;
-            foreach(var handle in m_LoadedSceneHandles)
+            foreach (var handle in m_LoadedSceneHandles)
             {
-                if(handle.PathOrAddress == unloadData.PathOrAddress)
+                if (handle.PathOrAddress == unloadData.PathOrAddress)
                 {
                     loaderHandle = handle;
                     break;
